@@ -11,14 +11,30 @@ import Spinner from './Spinner';
 
 class App extends React.Component {
     
+    constructor(props) {
+        super(props);
+        this.state = {
+            cash: 1000
+        }
+        
+        this.applyWinnings = this.applyWinnings.bind(this);
+    }
+    
+    applyWinnings(winnings) {
+        console.log("got winnings :" + winnings)
+        const currentCash = this.state.cash;
+        this.setState({cash: currentCash + winnings})
+    }
+    
+
     render() {
         return(
             <div>
-                <Header />
+                <Header cash={this.state.cash} />
                 <Switch>
                     <Route exact path="/" component={Landing} />
                     <Route path="/cards" component={Cards} />
-                    <Route path="/dice" component={Dice} />
+                    <Route path="/dice"  render={()=><Dice applyWinnings={this.applyWinnings}/>}/>
                     <Route path="/spinner" component={Spinner} />
                 </Switch>
                 <Footer />
