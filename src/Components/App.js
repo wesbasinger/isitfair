@@ -32,7 +32,8 @@ class App extends React.Component {
                 <Header cash={this.state.cash} />
                 <Switch>
                     <Route exact path="/" component={Landing} />
-                    <Route path="/cards" render={()=><Cards cash={this.state.cash}/>} />
+                    <Route path="/cards" render={()=><Cards cash={this.state.cash}
+                                                            applyWinnings={this.applyWinnings}/>} />
                     <Route path="/dice"  render={()=><Dice applyWinnings={this.applyWinnings}/>}/>
                     <Route path="/spinner" component={Spinner} />
                 </Switch>

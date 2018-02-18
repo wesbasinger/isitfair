@@ -3,7 +3,6 @@ import { newDeck } from '52-deck';
 
 const deck = newDeck();
 
-
 class Cards extends React.Component {
     
     constructor(props) {
@@ -47,7 +46,30 @@ class Cards extends React.Component {
                     }
                 }>Decrease Bet</button>
                 <br />
-                <button>Draw Card</button>
+                <button onClick={
+                    (e)=> {
+                        const card = deck[Math.floor(Math.random()*deck.length)];
+                        
+                        let winnings;
+                        
+                        if (card.text === 'J' || card.text === 'Q' || card.text === 'K') {
+                            winnings = this.state.bet*2;
+                        } else  {
+                            winnings = this.state.bet*-1;
+                        }
+                        
+                        this.props.applyWinnings(winnings);
+                        
+                        this.setState({bet: 0})
+                        
+                        if (winnings > 0) {
+                            alert(`You drew a ${card.text} of ${card.suite}. You win $${winnings}!`);
+                        } else {
+                            alert(`You drew a ${card.text} of ${card.suite}. You lose $${winnings*-1}!`);
+                        }
+    
+                    }
+                }>Draw Card</button>
             </div>
         )
     }
