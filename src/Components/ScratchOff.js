@@ -30,33 +30,14 @@ class ScratchOff extends React.Component {
         }
         
         this.handleBoxClick = this.handleBoxClick.bind(this);
+        this.handleRedeem = this.handleRedeem.bind(this);
     }
     
-    handleBoxClick(event) {
+    handleRedeem() {
         
-        // get a reference to which box got clicked
-        const index = Number(event.target.value)
-        
-        // make a copy of what faces the user has revealed
-        const currFaces = this.state.faces;
-        
-        // make a copy of the gameboard at current time
-        const newBox = this.state.box;
-        
-        // change the gameboard to match the click
-        newBox[index] = this.state.square[index]
-        
-        // push the new face into the faces array
-        currFaces.push(this.state.square[index])
-        
-        this.setState({
-            // update the user's choices
-            faces: currFaces,
-            // set the state of the board to new gameboard
-            box: newBox
-        })
-        
-        if(this.state.faces.length === 2) {
+        if(this.state.faces.length < 2) {
+            alert("You have not scratched off two boxes yet.")
+        } else {
             if(this.state.faces[0] === '😃' && this.state.faces[1] === '😃') {
                 this.props.applyWinnings(5)
                 alert('You scratched off 😃 and 😃.  You won $5!')
@@ -73,10 +54,39 @@ class ScratchOff extends React.Component {
                     box: ['◼', '◼', '◼', '◼'],
                     faces: []
                 })
-            }
+            }   
         }
-        
     }
+    
+    handleBoxClick(event) {
+        
+        if(this.state.faces.length >= 2) {
+            alert("You have already clicked two boxes.  Please redeem your ticket.")
+        } else {
+            // get a reference to which box got clicked
+            const index = Number(event.target.value)
+            
+            // make a copy of what faces the user has revealed
+            const currFaces = this.state.faces;
+            
+            // make a copy of the gameboard at current time
+            const newBox = this.state.box;
+            
+            // change the gameboard to match the click
+            newBox[index] = this.state.square[index]
+            
+            // push the new face into the faces array
+            currFaces.push(this.state.square[index])
+            
+            this.setState({
+                // update the user's choices
+                faces: currFaces,
+                // set the state of the board to new gameboard
+                box: newBox
+            })
+        }
+    }
+    
     
     render() {
         
@@ -105,6 +115,8 @@ class ScratchOff extends React.Component {
                             </tr>
                         </tbody>
                     </table>
+                    <button type="button" className="btn btn-primary"
+                            onClick={this.handleRedeem}>Redeem</button>
                 </div>
             </main>
         )

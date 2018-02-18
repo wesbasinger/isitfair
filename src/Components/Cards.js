@@ -22,8 +22,11 @@ class Cards extends React.Component {
                     <h2>Instructions</h2>
                     <p>
                         This game allows you to place a wager.  You will place your wager
-                        first and then draw a card to see what your payout will be.
+                        first and then draw a card to see what your payout will be.  You
+                        can wager as much or as little as you like.
                         Face cards pay out double the bet, everything else loses.
+                        For example, if you bet $20 and draw a king of clubs, you will
+                        get $40 back.
                     </p>
                     <h2>
                         BET: ${this.state.bet}
