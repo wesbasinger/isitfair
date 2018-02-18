@@ -9,6 +9,9 @@ const getSquare = (cash) => {
     } else if (cash > 100 && cash < 120) {
     // user gets a fair square a few times after winning the first round
         return arrayShuffled(['😃', '😃', '🙁', '🙁']);
+    // user gets a favorable square if they are slightly below 100
+    } else if (cash => 70 && cash < 100) {
+        return arrayShuffled(['😃', '😃', '😃', '🙁'])
     } else {
     // user always looses if their cash is high
         return ['🙁', '🙁', '🙁', '🙁']
@@ -54,9 +57,9 @@ class ScratchOff extends React.Component {
         })
         
         if(this.state.faces.length === 2) {
-            if(this.state.faces[0] === '😃' || this.state.faces[1] === '😃') {
+            if(this.state.faces[0] === '😃' && this.state.faces[1] === '😃') {
                 this.props.applyWinnings(5)
-                alert('You won $5!')
+                alert('You scratched off 😃 and 😃.  You won $5!')
                 this.setState({
                     square: getSquare(this.props.cash),
                     box: ['◼', '◼', '◼', '◼'],
@@ -64,7 +67,7 @@ class ScratchOff extends React.Component {
                 })
             } else {
                 this.props.applyWinnings(-6);
-                alert("Sorry, you lost.");
+                alert(`You scratched off ${this.state.faces[0]} and ${this.state.faces[1]}.  Sorry, you lose.`);
                 this.setState({
                     square: getSquare(this.props.cash),
                     box: ['◼', '◼', '◼', '◼'],
@@ -76,8 +79,6 @@ class ScratchOff extends React.Component {
     }
     
     render() {
-        
-        const square = getSquare(this.props.cash);
         
         return(
             <div>
