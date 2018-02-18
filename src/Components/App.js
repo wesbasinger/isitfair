@@ -14,14 +14,13 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cash: 1000
+            cash: 100
         }
         
         this.applyWinnings = this.applyWinnings.bind(this);
     }
     
     applyWinnings(winnings) {
-        console.log("got winnings :" + winnings)
         const currentCash = this.state.cash;
         this.setState({cash: currentCash + winnings})
     }
