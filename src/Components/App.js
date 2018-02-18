@@ -35,7 +35,8 @@ class App extends React.Component {
                     <Route path="/cards" render={()=><Cards cash={this.state.cash}
                                                             applyWinnings={this.applyWinnings}/>} />
                     <Route path="/dice"  render={()=><Dice applyWinnings={this.applyWinnings}/>}/>
-                    <Route path="/scratch" component={ScratchOff} />
+                    <Route path="/scratch" render={()=><ScratchOff cash={this.state.cash}
+                                                            applyWinnings={this.applyWinnings}/>} />
                 </Switch>
                 <Footer />
             </div>
