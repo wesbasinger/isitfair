@@ -6,7 +6,7 @@ import Footer from './Footer';
 import Landing from './Landing';
 import Cards from './Cards';
 import Dice from './Dice';
-import Spinner from './Spinner';
+import ScratchOff from './ScratchOff';
 
 
 class App extends React.Component {
@@ -35,7 +35,7 @@ class App extends React.Component {
                     <Route path="/cards" render={()=><Cards cash={this.state.cash}
                                                             applyWinnings={this.applyWinnings}/>} />
                     <Route path="/dice"  render={()=><Dice applyWinnings={this.applyWinnings}/>}/>
-                    <Route path="/spinner" component={Spinner} />
+                    <Route path="/scratch" component={ScratchOff} />
                 </Switch>
                 <Footer />
             </div>

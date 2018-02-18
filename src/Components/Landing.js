@@ -13,7 +13,7 @@ const Landing = () => {
                 <Link to="/dice">Dice</Link>
             </div>
             <div>
-                <Link to="/spinner">Spinner</Link>
+                <Link to="/scratch">Scratch Off</Link>
             </div>
         </div>
     )
