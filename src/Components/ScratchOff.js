@@ -81,27 +81,32 @@ class ScratchOff extends React.Component {
     render() {
         
         return(
-            <div>
-                <h1>Scratch Off</h1>
-                <p>
-                    There are four squares.  There are two smiley faces and two frowny faces.  
-                    Scratch two by clicking on them.  
-                    If you reveal two smiley faces then you win.  It is $6 to play and 
-                    you get $11 for winning.
-                </p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><button value="0" onClick={this.handleBoxClick}>{this.state.box[0]}</button></td>
-                            <td><button value="1" onClick={this.handleBoxClick}>{this.state.box[1]}</button></td>
-                        </tr>
-                        <tr>
-                            <td><button value="2" onClick={this.handleBoxClick}>{this.state.box[2]}</button></td>
-                            <td><button value="3" onClick={this.handleBoxClick}>{this.state.box[3]}</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <main role="main" className="container">
+                <div className="starter-template">
+                    <div className="jumbotron">
+                        <h1 className="display-3">Scratch Off</h1>
+                    </div>
+                    <h2>Instructions</h2>
+                    <p>
+                        There are four squares.  There are two smiley faces and two frowny faces.  
+                        Scratch two by clicking on them.  
+                        If you reveal two smiley faces then you win.  It is $6 to play and 
+                        you get $11 for winning.
+                    </p>
+                    <table className="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td className="box-square"><button value="0" onClick={this.handleBoxClick}>{this.state.box[0]}</button></td>
+                                <td className="box-square"><button value="1" onClick={this.handleBoxClick}>{this.state.box[1]}</button></td>
+                            </tr>
+                            <tr>
+                                <td className="box-square"><button value="2" onClick={this.handleBoxClick}>{this.state.box[2]}</button></td>
+                                <td className="box-square"><button value="3" onClick={this.handleBoxClick}>{this.state.box[3]}</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
         )
     }
 }
