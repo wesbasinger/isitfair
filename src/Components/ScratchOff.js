@@ -23,6 +23,7 @@ class ScratchOff extends React.Component {
     
     constructor(props) {
         super(props);
+        
         this.state = {
             square: getSquare(props.cash),
             box: ['◼', '◼', '◼', '◼'],
@@ -39,7 +40,7 @@ class ScratchOff extends React.Component {
             alert("You have not scratched off two boxes yet.")
         } else {
             if(this.state.faces[0] === '😃' && this.state.faces[1] === '😃') {
-                this.props.applyWinnings(5)
+                this.props.applyWinnings(11)
                 alert('You scratched off 😃 and 😃.  You won $5!')
                 this.setState({
                     square: getSquare(this.props.cash),
@@ -47,7 +48,6 @@ class ScratchOff extends React.Component {
                     faces: []
                 })
             } else {
-                this.props.applyWinnings(-6);
                 alert(`You scratched off ${this.state.faces[0]} and ${this.state.faces[1]}.  Sorry, you lose.`);
                 this.setState({
                     square: getSquare(this.props.cash),
@@ -84,6 +84,11 @@ class ScratchOff extends React.Component {
                 // set the state of the board to new gameboard
                 box: newBox
             })
+            
+            // make them buy their ticket
+            if(this.state.faces.length === 2) {
+                this.props.applyWinnings(-6)
+            }
         }
     }
     
@@ -116,7 +121,7 @@ class ScratchOff extends React.Component {
                         </tbody>
                     </table>
                     <button type="button" className="btn btn-primary"
-                            onClick={this.handleRedeem}>Redeem</button>
+                            onClick={this.handleRedeem}>Redeem/Reset</button>
                 </div>
             </main>
         )
